@@ -36,7 +36,14 @@ public class Spaceship : MonoBehaviour
 	// 弾の作成
 	public void Shot (Transform origin)
 	{
-		Instantiate (bullet, origin.position, origin.rotation);
+		int splits = 6;
+		int splitTheta = 360 / splits;
+		 
+		for (int i=0; i<splits; i++) {
+			Quaternion rotate = Quaternion.Euler(0, 0, i*splitTheta);
+			Instantiate (bullet, transform.position, rotate);  
+		}
+//		Instantiate (bullet, origin.position, origin.rotation);
 	}
 
 	// アニメーターコンポーネントの取得
